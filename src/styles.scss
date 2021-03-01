@@ -1,0 +1,331 @@
+@import './colors';
+@import './sizes';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: $base-color;
+  background: $light-color;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  margin: auto;
+  height: 100vh;
+  width: 80vw;
+  grid-template-areas:
+    'head'
+    'main'
+    'foot';
+}
+header {
+  grid-area: head;
+  margin: 3rem 0;
+  align-self: start;
+  a {
+    text-decoration: none;
+    color: $base-color;
+  }
+  h1 {
+    font-size: $large;
+  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  nav {
+    ul {
+      display: flex;
+    }
+    button {
+      margin-left: 1rem;
+      padding: 0.3rem 1rem;
+    }
+  }
+}
+main {
+  grid-area: main;
+
+  h2 {
+    color: $base-color;
+    text-align: center;
+  }
+  .container {
+    margin: 3rem 0;
+    border: 1px solid $base-color;
+    padding: 5rem;
+    text-align: center;
+    min-height: 30rem;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+// Form styles
+
+button,
+.button {
+  background-color: $light-color;
+  border: 1px solid $base-color;
+  color: $base-color;
+  font-weight: 700;
+  border-radius: 20px;
+  transition: 0.5s;
+  outline: none;
+  &:hover {
+    background-color: $base-color;
+    color: $light-color;
+    cursor: pointer;
+  }
+}
+.dashboard-button {
+  background-color: $base-color;
+  border: none;
+  color: $light-color;
+  &:hover {
+    background-color: lighten($base-color, 20%);
+  }
+}
+.row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  .column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    margin: 1rem;
+    button,
+    .button {
+      padding: 1rem 1rem;
+      border-radius: 10px;
+    }
+    input[type='text'] {
+      background-color: $light-color;
+      border: 1px solid $base-color;
+      color: $base-color;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 1rem 1rem;
+      outline: none;
+    }
+    ::placeholder {
+      color: lighten($base-color, 30%);
+    }
+    .consent {
+      place-self: flex-start;
+      font-weight: 700;
+      input {
+        margin-right: 1rem;
+      }
+    }
+    .radio-group {
+      border: none;
+      place-self: center;
+      font-weight: 700;
+      span {
+        margin-right: 1rem;
+      }
+      input {
+        margin-left: 1rem;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+// Footer styles
+footer {
+  grid-area: foot;
+  align-self: end;
+  justify-self: center;
+  margin: 3rem;
+}
+
+//Loader
+.loading-block {
+  .isHidden {
+    visibility: hidden;
+  }
+  width: 60%;
+  .fade-out {
+    animation: fadeOut ease 1s;
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  .fade-out {
+    animation: fadeOut ease 1s;
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .fade-in {
+    animation: fadeIn ease 1s;
+  }
+  .data-found {
+    ul {
+      display: flex;
+      justify-content: space-between;
+      font-size: $sml;
+      margin-bottom: 3rem;
+    }
+    span {
+      color: lighten($base-color, $amount: 20);
+    }
+    .button {
+      display: flex;
+      height: 3rem;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+.loader {
+  width: 100%;
+  background-color: $light-color;
+  border-radius: 10px;
+  border: 1px solid $base-color;
+  box-sizing: border-box;
+  position: relative;
+  margin-bottom: 2rem;
+  .progress {
+    position: relative;
+    width: 60%;
+    left: 0px;
+    height: 3rem;
+    background-color: $base-color;
+    border-radius: 10px;
+  }
+}
+
+// Dashboard table
+table {
+  width: 100%;
+  border: 1px solid $base-color;
+  th {
+    border-bottom: 1px solid $base-color;
+    padding: 1rem;
+  }
+  td {
+    padding: 1rem;
+    text-align: center;
+  }
+  button {
+    background-color: $base-color;
+    color: $light-color;
+    padding: 0.5rem;
+    width: 100%;
+  }
+}
+
+// Resonsive layouts
+@media only screen and (max-width: 768px) {
+  .wrapper,
+  header,
+  nav,
+  footer {
+    width: 95vw;
+    display: block;
+    text-align: center;
+  }
+  header {
+    nav {
+      margin-top: 1rem;
+      ul {
+        justify-content: center;
+      }
+    }
+    h1 {
+      font-size: $mid;
+    }
+  }
+  main .container {
+    margin: 0;
+    padding: 0;
+    border: none;
+    .row {
+      display: block;
+      margin: 0;
+    }
+  }
+  footer {
+    margin: 2rem 0;
+  }
+  .loading-block {
+    width: 90%;
+    .data-found {
+      ul {
+        display: block;
+        li {
+          line-height: 3rem;
+        }
+      }
+    }
+  }
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+  table {
+    border: none;
+    font-size: $sml;
+    th {
+      display: none;
+    }
+    tr {
+      margin-bottom: 2rem;
+    }
+    tr:nth-child(odd) {
+      background: $base-color;
+      border-radius: 10px;
+      color: $light-color;
+      .dashboard-button {
+        background-color: $light-color;
+        color: $base-color;
+      }
+    }
+    tr:nth-child(even) {
+      background: $light-grey;
+      border-radius: 10px;
+    }
+    .dashboard-button {
+      padding: 1rem;
+      font-size: $sml;
+      width: 80%;
+    }
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .wrapper {
+    width: 95vw;
+  }
+}
